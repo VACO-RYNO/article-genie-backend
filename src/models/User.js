@@ -10,7 +10,7 @@ const joiUserSchema = joi.object({
   myArticles: joi.array().items(
     joi.string().meta({
       _mongoose: { type: "ObjectId", ref: "Article" },
-    })
+    }),
   ),
 });
 
