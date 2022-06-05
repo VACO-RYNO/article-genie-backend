@@ -7,7 +7,7 @@ exports.errorHandler = (err, req, res, next) => {
   Logger.error(
     `${err.status || 500} - ${err.message} - ${req.originalUrl} - ${
       req.method
-    } - ${req.ip}`
+    } - ${req.ip}`,
   );
 
   res.status(err.status || 500);

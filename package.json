@@ -21,6 +21,11 @@
     "winston": "^3.7.2"
   },
   "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
     "nodemon": "^2.0.16"
   }
 }

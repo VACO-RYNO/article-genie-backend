@@ -3,7 +3,7 @@ const cors = require("cors");
 const routes = require("../api");
 const { errorHandler } = require("../api/middlewares/errorHandler");
 
-module.exports = (app) => {
+module.exports = app => {
   app.get("/status", (req, res) => {
     res.status(200).end();
   });
