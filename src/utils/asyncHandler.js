@@ -1,6 +1,6 @@
 const Logger = require("../loaders/logger");
 
-const catchAsync = (asyncFunction) => {
+const catchAsync = asyncFunction => {
   return async (req, res, next) => {
     try {
       await asyncFunction(req, res, next);

@@ -2,7 +2,7 @@ const morgan = require("morgan");
 const Logger = require("../../loaders/logger");
 
 const stream = {
-  write: (message) => Logger.http(message),
+  write: message => Logger.http(message),
 };
 
 const skip = () => {
@@ -13,7 +13,7 @@ const skip = () => {
 
 const morganMiddleware = morgan(
   ":method :url :status :res[content-length] - :response-time ms",
-  { stream, skip }
+  { stream, skip },
 );
 
 module.exports = morganMiddleware;
