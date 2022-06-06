@@ -3,6 +3,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const Joi = require("joi");
 
+const { catchAsync } = require("../../utils/asyncHandler");
+
 const route = Router();
 
 module.exports = app => {
@@ -21,13 +23,12 @@ module.exports = app => {
 
       next();
     },
-    async (req, res, next) => {
-      try {
-        const { originUrl } = req.body;
-        const { data } = await axios.get(originUrl);
-        const document = cheerio.load(data);
+    catchAsync(async (req, res, next) => {
+      const { originUrl } = req.body;
+      const { data } = await axios.get(originUrl);
+      const document = cheerio.load(data);
 
-        document("head").append(`
+      document("head").append(`
       <style>
         p:hover {
           background-color: #fcddec;
@@ -41,15 +42,12 @@ module.exports = app => {
         }
       </style>`);
 
-        document("div").each((index, item) => (item.tagName = "section"));
-        document("ul").each((index, item) => (item.tagName = "nav"));
-        document("ol").each((index, item) => (item.tagName = "nav"));
-        document("b").each((index, item) => (item.tagName = "strong"));
+      document("div").each((index, item) => (item.tagName = "section"));
+      document("ul").each((index, item) => (item.tagName = "nav"));
+      document("ol").each((index, item) => (item.tagName = "nav"));
+      document("b").each((index, item) => (item.tagName = "strong"));
 
-        res.send(document.html());
-      } catch (err) {
-        next(err);
-      }
-    }),
+      return document.html();
+    })),
   );
 };
