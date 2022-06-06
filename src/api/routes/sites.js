@@ -17,17 +17,15 @@ module.exports = app => {
 
       const { error } = schema.validate(req.body);
 
-      if (error) {
-        next(error);
-      } else {
-        next();
-      }
+      if (error) return next(error);
+
+      next();
     },
     async (req, res, next) => {
       try {
         const { originUrl } = req.body;
-        const response = await axios.get(originUrl);
-        const document = cheerio.load(response.data);
+        const { data } = await axios.get(originUrl);
+        const document = cheerio.load(data);
 
         document("head").append(`
       <style>
@@ -43,10 +41,9 @@ module.exports = app => {
         }
       </style>`);
 
-        document("ul")
-          .find("li")
-          .each((index, item) => (item.tagName = "section"));
-        document("ul").each((index, item) => (item.tagName = "article"));
+        document("div").each((index, item) => (item.tagName = "section"));
+        document("ul").each((index, item) => (item.tagName = "nav"));
+        document("ol").each((index, item) => (item.tagName = "nav"));
         document("b").each((index, item) => (item.tagName = "strong"));
 
         res.send(document.html());
