@@ -15,7 +15,7 @@ module.exports = app => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cors());
 
-  app.use(routes());
+  app.use("/api", routes());
 
   app.use(function (req, res, next) {
     res.sendStatus(404);
