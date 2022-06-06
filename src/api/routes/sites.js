@@ -5,6 +5,8 @@ const Joi = require("joi");
 
 const { catchAsync } = require("../../utils/asyncHandler");
 
+const User = require("../../models/User");
+
 const route = Router();
 
 module.exports = app => {
@@ -46,6 +48,19 @@ module.exports = app => {
       document("ul").each((index, item) => (item.tagName = "nav"));
       document("ol").each((index, item) => (item.tagName = "nav"));
       document("b").each((index, item) => (item.tagName = "strong"));
+
+      if (!req.user) return res.send(document.html());
+
+      const user = await User.findOne({ _id: res.user.id });
+
+      user.recentlyVisitedSites = [
+        originUrl,
+        ...user.recentlyVisitedSites
+          .filter(existedUrl => existedUrl !== originUrl)
+          .slice(0, 9),
+      ];
+
+      await user.save();
 
       return document.html();
     })),
