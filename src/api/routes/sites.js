@@ -51,7 +51,7 @@ module.exports = app => {
 
       if (!req.user) return res.send(document.html());
 
-      const user = await User.findOne({ _id: res.user.id });
+      const user = await User.findOne({ _id: req.user.id });
 
       user.recentlyVisitedSites = [
         originUrl,
