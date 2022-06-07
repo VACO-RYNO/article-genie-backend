@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../../config/index");
+
+const config = require("../../config");
+const { catchAsync } = require("../../utils/asyncHandler");
+const validate = require("../middlewares/validateSchema");
 
 const User = require("../../models/User");
-const { catchAsync } = require("../../utils/asyncHandler");
 
 const route = Router();
 
@@ -13,8 +15,9 @@ module.exports = app => {
 
   route.post(
     "/",
+    validate(User, "body"),
     catchAsync(async (req, res, next) => {
-      const { name, email } = req.body;
+      const { name, email, imageUrl } = req.body;
 
       if (!name || !email) {
         return next(createError(401));
@@ -23,7 +26,11 @@ module.exports = app => {
       let userData = await User.findOne({ email });
 
       if (!userData) {
-        userData = await User.create({ ...req.body });
+        userData = await User.create({
+          name,
+          email,
+          profileImageUrl: imageUrl,
+        });
       }
 
       const userPayload = {
@@ -31,7 +38,7 @@ module.exports = app => {
         email: userData.email,
       };
 
-      const accessToken = jwt.sign(userPayload, JWT_SECRET, {
+      const accessToken = jwt.sign(userPayload, config.JWT_SECRET, {
         expiresIn: "1d",
       });
 
@@ -42,8 +49,6 @@ module.exports = app => {
           name: userData.name,
           email: userData.email,
           profileImageUrl: userData.profileImageUrl,
-          recentlyVisitedSites: userData.recentlyVisitedSites,
-          myArticles: userData.myArticles,
         },
         accessToken: accessToken,
       });

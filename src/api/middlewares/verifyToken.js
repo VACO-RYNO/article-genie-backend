@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../../config/index");
+
+const config = require("../../config");
 
 function verifyToken(req, res, next) {
   const authToken = req.headers.authorization;
@@ -17,7 +18,7 @@ function verifyToken(req, res, next) {
 
   const verifiedUserData = jwt.verify(
     accessToken,
-    JWT_SECRET,
+    config.JWT_SECRET,
     (error, payload) => {
       if (error) {
         return null;
@@ -31,7 +32,7 @@ function verifyToken(req, res, next) {
     return next(createError(401));
   }
 
-  req.body = verifiedUserData;
+  req.user = verifiedUserData;
 
   next();
 }
