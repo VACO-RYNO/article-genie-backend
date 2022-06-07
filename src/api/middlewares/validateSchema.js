@@ -5,7 +5,7 @@ module.exports = function validate(schema, property) {
     const { error } = schema.validate(req[property]);
 
     if (error) {
-      next(createError(401));
+      next(createError(400));
     }
 
     next();

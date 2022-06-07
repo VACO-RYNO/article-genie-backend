@@ -5,7 +5,7 @@ const Joi = require("joi");
 
 const { catchAsync } = require("../../utils/asyncHandler");
 
-const User = require("../../models/User");
+const { User } = require("../../models/User");
 
 const route = Router();
 
