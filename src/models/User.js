@@ -18,4 +18,4 @@ const userSchema = new mongoose.Schema(joigoose.convert(joiUserSchema));
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = { User, joiUserSchema };

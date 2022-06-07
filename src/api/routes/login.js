@@ -6,7 +6,7 @@ const config = require("../../config");
 const { catchAsync } = require("../../utils/asyncHandler");
 const validate = require("../middlewares/validateSchema");
 
-const User = require("../../models/User");
+const { User, joiUserSchema } = require("../../models/User");
 
 const route = Router();
 
@@ -15,7 +15,7 @@ module.exports = app => {
 
   route.post(
     "/",
-    validate(User, "body"),
+    validate(joiUserSchema, "body"),
     catchAsync(async (req, res, next) => {
       const { name, email, imageUrl } = req.body;
 
