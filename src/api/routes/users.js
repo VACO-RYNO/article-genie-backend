@@ -1,11 +1,33 @@
 const { Router } = require("express");
+const joi = require("joi");
+
+const { catchAsync } = require("../../utils/asyncHandler");
+const verifyToken = require("../middlewares/verifyToken");
+const validate = require("../middlewares/validateSchema");
+
+const { User } = require("../../models/User");
 
 const route = Router();
 
 module.exports = app => {
-  app.use("/users", route);
+  app.use("/users", verifyToken, route);
 
-  route.get("/:user_id/sites", (req, res, next) => {});
+  route.get(
+    "/:user_id/sites",
+    validate(joi.object({ user_id: joi.string().required() }), "params"),
+    catchAsync(async (req, res, next) => {
+      const { user_id } = req.params;
+
+      const userData = await User.findOne({ _id: user_id }).lean();
+
+      return res.json({
+        result: "ok",
+        data: {
+          recentlyVisitedSites: userData.recentlyVisitedSites,
+        },
+      });
+    }),
+  );
 
   route.get("/:user_id/articles", (req, res, next) => {});
   route.post("/:user_id/articles", (req, res, next) => {});
