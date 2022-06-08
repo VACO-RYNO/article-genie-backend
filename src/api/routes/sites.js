@@ -30,19 +30,9 @@ module.exports = app => {
       const { data } = await axios.get(originUrl);
       const document = cheerio.load(data);
 
-      document("head").append(`
-      <style>
-        p:hover {
-          background-color: #fcddec;
-          border-radius: 5px;
-          box-shadow: #fcddec 0px 0px 0px 2px;
-        }
-        .hover {
-          background-color: #fcddec;
-          border-radius: 5px;
-          box-shadow: #fcddec 0px 0px 0px 2px;
-        }
-      </style>`);
+      document("head").append(
+        `<link rel="stylesheet" href="http://localhost:8000/api/static/css">`,
+      );
 
       document("div").each((index, item) => (item.tagName = "section"));
       document("ul").each((index, item) => (item.tagName = "nav"));
