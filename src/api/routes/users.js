@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const joi = require("joi");
+joi.objectId = require("joi-objectid")(joi);
 
 const { catchAsync } = require("../../utils/asyncHandler");
 const verifyToken = require("../middlewares/verifyToken");
@@ -14,7 +15,7 @@ module.exports = app => {
 
   route.get(
     "/:user_id/sites",
-    validate(joi.object({ user_id: joi.string().required() }), "params"),
+    validate(joi.object({ user_id: joi.objectId().required() }), "params"),
     catchAsync(async (req, res, next) => {
       const { user_id } = req.params;
 
