@@ -1,0 +1,10 @@
+p:hover {
+  background-color: #fcddec;
+  border-radius: 5px;
+  box-shadow: #fcddec 0px 0px 0px 2px;
+}
+.hover {
+  background-color: #fcddec;
+  border-radius: 5px;
+  box-shadow: #fcddec 0px 0px 0px 2px;
+}
