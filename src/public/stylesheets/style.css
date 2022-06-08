@@ -10,13 +10,13 @@ p:hover {
   box-shadow: #fcddec 0px 0px 0px 2px;
 }
 
-#hover-modal {
+#genie-hover-modal {
   display: none;
   width: 245px;
   height: 50px;
 }
 
-#hover-modal.show {
+#genie-hover-modal.show {
   display: flex;
   position: absolute;
   border-radius: 10px;
@@ -32,13 +32,13 @@ p:hover {
   cursor: pointer;
 }
 
-.modal-button#link {
+.modal-button#genie-mode-link {
   border: 1px solid #6466ff;
   background-color: #6466ff;
   color: white;
 }
 
-.modal-button#memo {
+.modal-button#genie-mode-memo {
   border: 1px solid #d0deeb;
   background-color: #d0deeb;
   color: #1a2653;
