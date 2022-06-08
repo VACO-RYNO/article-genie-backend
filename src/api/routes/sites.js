@@ -36,14 +36,14 @@ module.exports = app => {
 
       document("body").append(
         `<div id="hover-modal">
-          <button class="modal-button" id="link">링크 생성</button>
-          <button class="modal-button" id="memo">메모</button>
+          <button class="modal-button" id="genie-mode-link">링크 생성</button>
+          <button class="modal-button" id="genie-mode-memo">메모</button>
         </div>`,
       );
 
       document("p").attr(
         "onMouseOver",
-        `const hoverModal = document.querySelector("#hover-modal");
+        `const hoverModal = document.querySelector("#genie-hover-modal");
         hoverModal.classList.add("show");
         hoverModal.style.left = window.event.clientX - 50 + "px";
         hoverModal.style.top = this.offsetTop + 190 + "px";
