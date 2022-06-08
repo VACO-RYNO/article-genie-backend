@@ -34,6 +34,22 @@ module.exports = app => {
         `<link rel="stylesheet" href="http://localhost:8000/api/static/css">`,
       );
 
+      document("body").append(
+        `<div id="hover-modal">
+          <button class="modal-button" id="link">링크 생성</button>
+          <button class="modal-button" id="memo">메모</button>
+        </div>`,
+      );
+
+      document("p").attr(
+        "onMouseOver",
+        `const hoverModal = document.querySelector("#hover-modal");
+        hoverModal.classList.add("show");
+        hoverModal.style.left = window.event.clientX - 50 + "px";
+        hoverModal.style.top = this.offsetTop + 190 + "px";
+        `,
+      );
+
       document("div").each((index, item) => (item.tagName = "section"));
       document("ul").each((index, item) => (item.tagName = "nav"));
       document("ol").each((index, item) => (item.tagName = "nav"));

@@ -3,8 +3,43 @@ p:hover {
   border-radius: 5px;
   box-shadow: #fcddec 0px 0px 0px 2px;
 }
+
 .hover {
   background-color: #fcddec;
   border-radius: 5px;
   box-shadow: #fcddec 0px 0px 0px 2px;
+}
+
+#hover-modal {
+  display: none;
+  width: 245px;
+  height: 50px;
+}
+
+#hover-modal.show {
+  display: flex;
+  position: absolute;
+  border-radius: 10px;
+  background-color: #f1f5f8;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.modal-button {
+  width: 82px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-button#link {
+  border: 1px solid #6466ff;
+  background-color: #6466ff;
+  color: white;
+}
+
+.modal-button#memo {
+  border: 1px solid #d0deeb;
+  background-color: #d0deeb;
+  color: #1a2653;
 }
