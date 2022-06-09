@@ -1,4 +1,10 @@
-p:hover {
+.highlight {
+  background-color: #fcddec;
+  border-radius: 5px;
+  box-shadow: #fcddec 0px 0px 0px 2px;
+}
+
+.focus {
   background-color: #fcddec;
   border-radius: 5px;
   box-shadow: #fcddec 0px 0px 0px 2px;
@@ -42,4 +48,8 @@ p:hover {
   border: 1px solid #d0deeb;
   background-color: #d0deeb;
   color: #1a2653;
+}
+
+.hide {
+  display: none;
 }
