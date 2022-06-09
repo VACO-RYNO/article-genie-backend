@@ -35,7 +35,7 @@ module.exports = app => {
       );
 
       document("body").append(
-        `<div id="hover-modal">
+        `<div id="genie-hover-modal">
           <button class="modal-button" id="genie-mode-link">링크 생성</button>
           <button class="modal-button" id="genie-mode-memo">메모</button>
         </div>`,

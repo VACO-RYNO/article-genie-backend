@@ -8,14 +8,24 @@ const joiArticleSchema = joi.object({
     .string()
     .meta({ _mongoose: { type: "ObjectId", ref: "Tag" } })
     .required(),
-  contents: joi.string(),
-  previewContents: joi.string(),
-  lastVistedSiteUrl: joi.string().required(),
-  lastSavedTime: joi.date().required(),
+  contents: joi.string().allow("").default(""),
+  previewContents: joi.string().allow("").default(""),
+  lastVisitedSiteUrl: joi.string().required(),
+  lastSavedTime: joi.date().default(new Date()),
 });
 
 const articleSchema = new mongoose.Schema(joigoose.convert(joiArticleSchema));
 
+articleSchema.pre("save", async function (next) {
+  const newArticle = this;
+
+  const isExistArticle = await Article.exists({ title: newArticle.title });
+
+  if (isExistArticle) throw new Error("The title already exists.");
+
+  next();
+});
+
 const Article = mongoose.model("Article", articleSchema);
 
-module.exports = Article;
+module.exports = { Article, joiArticleSchema };
