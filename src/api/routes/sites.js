@@ -31,26 +31,26 @@ module.exports = app => {
       const document = cheerio.load(data);
 
       document("head").append(
-        `<link rel="stylesheet" href="http://localhost:8000/api/static/css">`,
+        `<link rel="stylesheet" href="http://localhost:8000/api/static/css">
+        <script src="http://localhost:8000/api/static/javascript">`,
       );
+
+      let id = 1;
+
+      document("p").each(function (i, ele) {
+        document(this).attr("genie-id", `${id}`);
+        id++;
+      });
 
       document("body").append(
         `<div id="genie-hover-modal">
           <button class="modal-button" id="genie-mode-link">링크 생성</button>
           <button class="modal-button" id="genie-mode-memo">메모</button>
-        </div>`,
+          <p class="hide"></p>
+        </div>
+       `,
       );
 
-      document("p").attr(
-        "onMouseOver",
-        `const hoverModal = document.querySelector("#genie-hover-modal");
-        hoverModal.classList.add("show");
-        hoverModal.style.left = window.event.clientX - 50 + "px";
-        hoverModal.style.top = this.offsetTop + 190 + "px";
-        `,
-      );
-
-      document("div").each((index, item) => (item.tagName = "section"));
       document("ul").each((index, item) => (item.tagName = "nav"));
       document("ol").each((index, item) => (item.tagName = "nav"));
       document("b").each((index, item) => (item.tagName = "strong"));
