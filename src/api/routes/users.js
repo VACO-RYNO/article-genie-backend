@@ -32,6 +32,30 @@ module.exports = app => {
       });
     }),
   );
+  route.post(
+    "/:user_id/sites",
+    validate(joi.object({ user_id: joi.objectId().required() }), "params"),
+    validate(joi.object({ originUrl: joi.string().required() }), "body"),
+    catchAsync(async (req, res, next) => {
+      const { user_id } = req.params;
+      const { originUrl } = req.body;
+
+      const user = await User.findOne({ _id: user_id });
+
+      user.recentlyVisitedSites = [
+        originUrl,
+        ...user.recentlyVisitedSites
+          .filter(existedUrl => existedUrl !== originUrl)
+          .slice(0, 9),
+      ];
+
+      await user.save();
+
+      return res
+        .status(201)
+        .json({ result: "ok", data: { ...user.toObject() } });
+    }),
+  );
 
   route.get("/:user_id/articles", (req, res, next) => {});
   route.post(
