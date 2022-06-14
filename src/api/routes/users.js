@@ -83,13 +83,13 @@ module.exports = app => {
           userArticles = userData.myArticles;
 
           await session.commitTransaction();
-          session.endSession();
         });
       } catch (err) {
         await session.abortTransaction();
-        session.endSession();
         next(err);
       }
+
+      session.endSession();
 
       return res.status(200).json({ result: "ok", data: [...userArticles] });
     }),
@@ -163,9 +163,26 @@ module.exports = app => {
       "params",
     ),
     catchAsync(async (req, res, next) => {
-      const { article_id } = req.params;
+      const { user_id, article_id } = req.params;
+      const session = await startSession();
 
-      await Article.findByIdAndDelete(article_id);
+      await session.withTransaction(async () => {
+        try {
+          await User.updateMany(
+            { _id: user_id },
+            { $pull: { myArticles: { $in: article_id } } },
+          );
+
+          await Article.findByIdAndDelete(article_id);
+
+          await session.commitTransaction();
+        } catch (err) {
+          await session.abortTransaction();
+          next(err);
+        }
+      });
+
+      session.endSession();
 
       return res.status(200).json({ result: "ok" });
     }),
@@ -179,11 +196,12 @@ module.exports = app => {
       }),
       "params",
     ),
+    validate(joiArticleSchema, "body"),
     catchAsync(async (req, res, next) => {
       const { article_id } = req.params;
 
-      await Article.findByIdAndUpdate(
-        article_id,
+      await Article.findOneAndReplace(
+        { _id: article_id },
         { ...req.body },
         { new: true },
       );
@@ -201,6 +219,12 @@ module.exports = app => {
         article_id: joi.objectId().required(),
       }),
       "params",
+    ),
+    validate(
+      joi.object({
+        lastVisitedSiteUrl: joi.string().uri().required(),
+      }),
+      "body",
     ),
     catchAsync(async (req, res, next) => {
       const { article_id } = req.params;
