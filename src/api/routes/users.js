@@ -65,29 +65,23 @@ module.exports = app => {
       const session = await startSession();
       let userArticles = [];
 
-      try {
-        await session.withTransaction(async () => {
-          const userData = await User.findOne({ _id: user_id }, null, {
+      await session.withTransaction(async () => {
+        const userData = await User.findOne({ _id: user_id }, null, {
+          session,
+        })
+          .populate("myArticles")
+          .lean();
+
+        for (const article of userData.myArticles) {
+          article.tag = await Tag.findOne({ _id: article.tag }, null, {
             session,
-          })
-            .populate("myArticles")
-            .lean();
+          }).lean();
 
-          for (const article of userData.myArticles) {
-            article.tag = await Tag.findOne({ _id: article.tag }, null, {
-              session,
-            }).lean();
+          delete article.__v;
+        }
 
-            delete article.__v;
-          }
-          userArticles = userData.myArticles;
-
-          await session.commitTransaction();
-        });
-      } catch (err) {
-        await session.abortTransaction();
-        next(err);
-      }
+        userArticles = userData.myArticles;
+      });
 
       session.endSession();
 
@@ -167,19 +161,12 @@ module.exports = app => {
       const session = await startSession();
 
       await session.withTransaction(async () => {
-        try {
-          await User.updateMany(
-            { _id: user_id },
-            { $pull: { myArticles: { $in: article_id } } },
-          );
+        await User.updateOne(
+          { _id: user_id },
+          { $pull: { myArticles: article_id } },
+        );
 
-          await Article.findByIdAndDelete(article_id);
-
-          await session.commitTransaction();
-        } catch (err) {
-          await session.abortTransaction();
-          next(err);
-        }
+        await Article.findByIdAndDelete(article_id);
       });
 
       session.endSession();
