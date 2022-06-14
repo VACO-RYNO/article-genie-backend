@@ -16,16 +16,6 @@ const joiArticleSchema = joi.object({
 
 const articleSchema = new mongoose.Schema(joigoose.convert(joiArticleSchema));
 
-articleSchema.pre("save", async function (next) {
-  const newArticle = this;
-
-  const isExistArticle = await Article.exists({ title: newArticle.title });
-
-  if (isExistArticle) throw new Error("The title already exists.");
-
-  next();
-});
-
 const Article = mongoose.model("Article", articleSchema);
 
 module.exports = { Article, joiArticleSchema };
