@@ -57,7 +57,62 @@ module.exports = app => {
     }),
   );
 
-  route.get("/:user_id/articles", (req, res, next) => {});
+  route.get(
+    "/:user_id/articles",
+    validate(joi.object({ user_id: joi.objectId().required() }), "params"),
+    catchAsync(async (req, res, next) => {
+      const { user_id } = req.params;
+      const session = await startSession();
+      let userArticles = [];
+
+      try {
+        await session.withTransaction(async () => {
+          const userData = await User.findOne({ _id: user_id }, null, {
+            session,
+          })
+            .populate("myArticles")
+            .lean();
+
+          for (const article of userData.myArticles) {
+            article.tag = await Tag.findOne({ _id: article.tag }, null, {
+              session,
+            }).lean();
+
+            delete article.__v;
+          }
+          userArticles = userData.myArticles;
+
+          await session.commitTransaction();
+          session.endSession();
+        });
+      } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+        next(err);
+      }
+
+      return res.status(200).json({ result: "ok", data: [...userArticles] });
+    }),
+  );
+  route.get(
+    "/:user_id/articles/:article_id",
+    validate(
+      joi.object({
+        user_id: joi.objectId().required(),
+        article_id: joi.objectId().required(),
+      }),
+      "params",
+    ),
+    catchAsync(async (req, res, next) => {
+      const { article_id } = req.params;
+
+      const userArticle = await Article.findOne({ _id: article_id }).lean();
+
+      delete userArticle.__v;
+
+      return res.status(200).json({ result: "ok", data: { ...userArticle } });
+    }),
+  );
   route.post(
     "/:user_id/articles",
     validate(joi.object({ user_id: joi.objectId().required() }), "params"),
@@ -98,7 +153,68 @@ module.exports = app => {
       return res.status(201).json({ result: "ok", data: { ...newArticle } });
     }),
   );
-  route.delete("/:user_id/articles/:article_id", (req, res, next) => {});
-  route.put("/:user_id/articles/:article_id", (req, res, next) => {});
-  route.patch("/:user_id/articles/:article_id", (req, res, next) => {});
+  route.delete(
+    "/:user_id/articles/:article_id",
+    validate(
+      joi.object({
+        user_id: joi.objectId().required(),
+        article_id: joi.objectId().required(),
+      }),
+      "params",
+    ),
+    catchAsync(async (req, res, next) => {
+      const { article_id } = req.params;
+
+      await Article.findByIdAndDelete(article_id);
+
+      return res.status(200).json({ result: "ok" });
+    }),
+  );
+  route.put(
+    "/:user_id/articles/:article_id",
+    validate(
+      joi.object({
+        user_id: joi.objectId().required(),
+        article_id: joi.objectId().required(),
+      }),
+      "params",
+    ),
+    catchAsync(async (req, res, next) => {
+      const { article_id } = req.params;
+
+      await Article.findByIdAndUpdate(
+        article_id,
+        { ...req.body },
+        { new: true },
+      );
+
+      return res.status(201).json({
+        result: "ok",
+      });
+    }),
+  );
+  route.patch(
+    "/:user_id/articles/:article_id",
+    validate(
+      joi.object({
+        user_id: joi.objectId().required(),
+        article_id: joi.objectId().required(),
+      }),
+      "params",
+    ),
+    catchAsync(async (req, res, next) => {
+      const { article_id } = req.params;
+      const { lastVisitedSiteUrl } = req.body;
+
+      await Article.findByIdAndUpdate(
+        article_id,
+        { lastVisitedSiteUrl },
+        { new: true },
+      );
+
+      return res.status(200).json({
+        result: "ok",
+      });
+    }),
+  );
 };
