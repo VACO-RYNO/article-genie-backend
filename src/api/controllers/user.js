@@ -147,11 +147,11 @@ exports.replaceMyArticle = catchAsync(async (req, res, next) => {
 
 exports.updateMyArticle = catchAsync(async (req, res, next) => {
   const { article_id } = req.params;
-  const { lastVisitedSiteUrl } = req.body;
+  const { lastVisitedSiteUrl, lastVisitedSiteOgImgSrc } = req.body;
 
   await Article.findByIdAndUpdate(
     article_id,
-    { lastVisitedSiteUrl },
+    { lastVisitedSiteUrl, lastVisitedSiteOgImgSrc },
     { new: true },
   );
 
