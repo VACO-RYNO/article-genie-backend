@@ -11,6 +11,7 @@ const joiArticleSchema = joi.object({
   contents: joi.string().allow("").default(""),
   previewContents: joi.string().allow("").default(""),
   lastVisitedSiteUrl: joi.string().required(),
+  lastVisitedSiteOgImgSrc: joi.string(),
   lastSavedTime: joi.date().default(new Date()),
 });
 

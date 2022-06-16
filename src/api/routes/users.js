@@ -85,6 +85,7 @@ module.exports = app => {
     validate(
       joi.object({
         lastVisitedSiteUrl: joi.string().uri().required(),
+        lastVisitedSiteOgImgSrc: joi.string().optional().allow(null).allow(""),
       }),
       "body",
     ),
