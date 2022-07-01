@@ -158,4 +158,40 @@ React 에서 Next.js 로 migration 하면서 기존 컴포넌트를 옮겼을 �
 
 ## 😃 개발자 소개
 
-![image](https://user-images.githubusercontent.com/41819129/174421741-96bd4622-8f63-4cb1-acb8-73781aeb10de.png)
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/David-Lee-dev">
+        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/305548c1-229c-4719-b08f-9a9e38e9ddf0/taewan-avatar.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220701%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220701T082621Z&X-Amz-Expires=86400&X-Amz-Signature=ece299d4f0e6c04e1a8f3eeaf0d5da293b9974ee950581550bdd3758b110d81a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22taewan-avatar.png%22&x-id=GetObject" alt="임태완 프로필" width="200px" height="200px" />
+      </a>
+    </td>
+    <td align="center">
+      <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/142f1cca-f2a4-4a41-bb0e-9bdee2070ca3/jun-avatar-resized.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220701%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220701T082700Z&X-Amz-Expires=86400&X-Amz-Signature=81a1623ffa36fc35ac2a94f66ab0ec06a7e630f5897b60634350f975c9efa961&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22jun-avatar-resized.png%22&x-id=GetObject" alt="김준형 프로필" width="200px" height="200px" />
+    </td>
+    <td align="center">
+      <a href="https://github.com/ksy9926">
+        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e398f5a6-cb59-43bb-b145-1e19ffcc3c88/go-avatar-resized.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220701%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220701T082810Z&X-Amz-Expires=86400&X-Amz-Signature=d6f22d4ed790fe5d13c8ef05932aeafa134f59af2e853808245ac4e0ba2edf5e&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22go-avatar-resized.png%22&x-id=GetObject" alt="고창윤 프로필" width="200px" height="200px"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <ul>  
+      <li><a href="https://github.com/taewanseoul">Taewan Lim 임태완</a></li>  
+		<li>taewan.seoul@gmail.com</li>  
+	</ul>
+    </td>
+    <td>
+    <ul>  
+      <li><a href="https://github.com/KimJunhyeong1">Junehyeong Kim 김준형</a></li>  
+		<li>khm11904@gmail.com</li>  
+	</ul>
+    </td>
+    <td>
+    <ul>  
+      <li><a href="https://github.com/changyun-go">Changyun Go 고창윤</a></li>  
+		<li>aeiou75three@gmail.com</li>  
+	</ul>
+    </td>
+  </tr>
+</table>
