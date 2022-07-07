@@ -166,7 +166,7 @@ React 에서 Next.js 로 migration 하면서 기존 컴포넌트를 옮겼을 �
       </a>
     </td>
     <td align="center">
-      <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/142f1cca-f2a4-4a41-bb0e-9bdee2070ca3/jun-avatar-resized.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220701%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220701T082700Z&X-Amz-Expires=86400&X-Amz-Signature=81a1623ffa36fc35ac2a94f66ab0ec06a7e630f5897b60634350f975c9efa961&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22jun-avatar-resized.png%22&x-id=GetObject" alt="김준형 프로필" width="200px" height="200px" />
+      <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/142f1cca-f2a4-4a41-bb0e-9bdee2070ca3/jun-avatar-resized.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220707T042741Z&X-Amz-Expires=86400&X-Amz-Signature=333928915f428857ade51c4de478427feaf4eab8c2f0a496f416da90c86650bd&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22jun-avatar-resized.png%22&x-id=GetObject" alt="김준형 프로필" width="200px" height="200px" />
     </td>
     <td align="center">
       <a href="https://github.com/ksy9926">
