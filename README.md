@@ -162,16 +162,16 @@ React 에서 Next.js 로 migration 하면서 기존 컴포넌트를 옮겼을 �
   <tr>
     <td align="center">
       <a href="https://github.com/taewanseoul">
-        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/305548c1-229c-4719-b08f-9a9e38e9ddf0/taewan-avatar.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220701%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220701T082621Z&X-Amz-Expires=86400&X-Amz-Signature=ece299d4f0e6c04e1a8f3eeaf0d5da293b9974ee950581550bdd3758b110d81a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22taewan-avatar.png%22&x-id=GetObject" alt="임태완 프로필" width="200px" height="200px" />
+        <img src=".github/taewan-avatar.png" alt="임태완 프로필" width="200px" height="200px" />
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/KimJunhyeong1">
-        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/142f1cca-f2a4-4a41-bb0e-9bdee2070ca3/jun-avatar-resized.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220707T042741Z&X-Amz-Expires=86400&X-Amz-Signature=333928915f428857ade51c4de478427feaf4eab8c2f0a496f416da90c86650bd&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22jun-avatar-resized.png%22&x-id=GetObject" alt="김준형 프로필" width="200px" height="200px" />
+      <img src=".github/jun-avatar-resized.png" alt="김준형 프로필" width="200px" height="200px" />
     </td>
     <td align="center">
       <a href="https://github.com/changyun-go">
-        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e398f5a6-cb59-43bb-b145-1e19ffcc3c88/go-avatar-resized.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220701%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220701T082810Z&X-Amz-Expires=86400&X-Amz-Signature=d6f22d4ed790fe5d13c8ef05932aeafa134f59af2e853808245ac4e0ba2edf5e&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22go-avatar-resized.png%22&x-id=GetObject" alt="고창윤 프로필" width="200px" height="200px"/>
+        <img src=".github/go-avatar-resized.png" alt="고창윤 프로필" width="200px" height="200px"/>
       </a>
     </td>
   </tr>
